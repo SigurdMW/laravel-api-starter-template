@@ -3,7 +3,10 @@
 // Web group route, used for serving the Angular-app
 
 Route::group(['middleware' => ['web']], function(){
+	
+	// SPA is served here, ie React, Angular etc
 	Route::get('/', 'PagesController@home');
+	
 });
 
 
@@ -17,4 +20,8 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['api']], function()
 
     // Custom stuff
     Route::resource('users', 'UserController');
+
+     // Password reset
+    Route::post('password/forgot', 'PasswordController@forgotPassword');
+    Route::post('password/setnew', 'PasswordController@setNewPassword');
 });
